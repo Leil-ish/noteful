@@ -16,9 +16,9 @@ export default class Note extends React.Component {
 
   handleClickDelete = e => {
     e.preventDefault()
-    const noteId = this.props.id
+    const note_id = this.props.note_id
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}/notes/${note_id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -30,8 +30,8 @@ export default class Note extends React.Component {
         return res.json()
       })
       .then(() => {
-        this.context.deleteNote(noteId)
-        this.props.onDeleteNote(noteId)
+        this.context.deleteNote(note_id)
+        this.props.onDeleteNote(note_id)
       })
       .catch(error => {
         console.error({ error })
@@ -39,13 +39,13 @@ export default class Note extends React.Component {
   }
 
   render() {
-    const { name, id, modified } = this.props
+    const { note_name, note_id, modified } = this.props
     return (
       <NotefulError>
         <div className='Note'>
           <h2 className='Note__title'>
-            <Link to={`/note/${id}`}>
-              {name}
+            <Link to={`/note/${note_id}`}>
+              {note_name}
             </Link>
           </h2>
           <button
@@ -73,5 +73,5 @@ export default class Note extends React.Component {
 }
 
 Note.propTypes = {
-  id: PropTypes.string
+  note_id: PropTypes.string
 }

@@ -14,20 +14,20 @@ export default class NotePageMain extends React.Component {
   }
   static contextType = Context
 
-  handleDeleteNote = noteId => {
+  handleDeleteNote = note_id => {
     this.props.history.push(`/`)
   }
 
   render() {
     const { notes=[] } = this.context
-    const { noteId } = this.props.match.params
-    const note = findNote(notes, noteId) || { content: '' }
+    const { note_id } = this.props.match.params
+    const note = findNote(notes, note_id) || { content: '' }
     return (
       <NotefulError>
         <section className='NotePageMain'>
           <Note
-            id={note.id}
-            name={note.name}
+            id={note.note_id}
+            name={note.note_name}
             modified={note.modified}
             onDeleteNote={this.handleDeleteNote}
           />

@@ -147,10 +147,10 @@ export default class AddNote extends Component {
                 )}
               </select>
               <ValidationError hasError={!this.state.folderSelected} 
-              message={this.state.validationMessages.folder_id}/>
+              message={this.state.validationMessages.id}/>
             </div>
             <div className='buttons'>
-              <button type='submit' className='submit__buttom' disabled={!this.state.formValid}>
+              <button type='submit' className='submit__button' disabled={!this.state.formValid}>
                 Add note
               </button>
             </div>
