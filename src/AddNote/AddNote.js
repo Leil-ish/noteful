@@ -18,16 +18,16 @@ export default class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      note_name: '',
       content: '',
-      folderId: '',
+      folder_id: '',
       modified: '',
       nameValid: false,
       folderSelected: false,
       formValid: false,
       validationMessages: {
-        name: '',
-        folder: ''
+        note_name: '',
+        folder_id: ''
       }
     }
   }
@@ -37,9 +37,9 @@ export default class AddNote extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const newNote = {
-      name: this.state.name,
+      note_name: this.state.note_name,
       content: this.state.content,
-      folderId: this.state.folderId,
+      folder_id: this.state.folder_id,
       modified: new Date(),
     }
 
@@ -58,19 +58,19 @@ export default class AddNote extends Component {
       })
       .then(note => {
         this.context.addNote(note)
-        this.props.history.push(`/folder/${note.folderId}`)
+        this.props.history.push(`/folder/${note.folder_id}`)
       })
       .catch(error => {
         console.error({ error })
       })
   }
 
-  updateName(name) {
-    this.setState({name}, () => {this.validateName(name)});
+  updateName(note_name) {
+    this.setState({note_name}, () => {this.validateName(note_name)});
   }
   
-  updateFolderId(folderId) {
-    this.setState({folderId}, () => {this.validateFolderId(folderId)});
+  updateFolderId(folder_id) {
+    this.setState({folder_id}, () => {this.validateFolderId(folder_id)});
   }
 
   validateName(fieldValue) {
@@ -79,7 +79,7 @@ export default class AddNote extends Component {
 
     fieldValue = fieldValue.trim();
     if(fieldValue.length === 0) {
-      fieldErrors.name = 'You must enter a note name.';
+      fieldErrors.note_name = 'You must enter a note name.';
       hasError = true;
     }
 
@@ -95,7 +95,7 @@ export default class AddNote extends Component {
 
     fieldValue = fieldValue.trim();
     if(fieldValue === '') {
-      fieldErrors.folderId = 'You must select a folder for this note.';
+      fieldErrors.folder_id = 'You must select a folder for this note.';
       hasError = true;
     }
 
@@ -125,7 +125,7 @@ export default class AddNote extends Component {
               <input type='text' id='note-name-input' name='note-name' 
               onChange={e => this.updateName(e.target.value)}/>
               <ValidationError hasError={!this.state.nameValid} 
-              message={this.state.validationMessages.name}/>
+              message={this.state.validationMessages.note_name}/>
             </div>
             <div className='field'>
               <label htmlFor='note-content-input'>
@@ -142,12 +142,12 @@ export default class AddNote extends Component {
                 <option value=''>Select a folder</option>
                 {folders.map(folder =>
                   <option key={folder.id} value={folder.id}>
-                    {folder.name}
+                    {folder.folder_name}
                   </option>
                 )}
               </select>
               <ValidationError hasError={!this.state.folderSelected} 
-              message={this.state.validationMessages.folderId}/>
+              message={this.state.validationMessages.folder_id}/>
             </div>
             <div className='buttons'>
               <button type='submit' className='submit__buttom' disabled={!this.state.formValid}>
