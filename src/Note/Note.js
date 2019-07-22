@@ -27,7 +27,6 @@ export default class Note extends React.Component {
       .then(res => {
         if (!res.ok)
           return res.json().then(e => Promise.reject(e))
-        return res.json()
       })
       .then(() => {
         this.context.deleteNote(note_id)
@@ -73,5 +72,6 @@ export default class Note extends React.Component {
 }
 
 Note.propTypes = {
+  note_name: PropTypes.string,
   note_id: PropTypes.number
 }

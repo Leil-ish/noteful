@@ -25,6 +25,7 @@ export default class NotePageMain extends React.Component {
     return (
       <NotefulError>
         <section className='NotePageMain'>
+          {console.log(findNote)}
           <Note
             note_id={note.note_id}
             note_name={note.note_name}

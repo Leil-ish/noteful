@@ -23,6 +23,7 @@ export default class NoteListMain extends React.Component {
     return (
       <NotefulError>
         <section className='NoteListMain'>
+          {console.log({notesForFolder})}
           <ul>
             {notesForFolder.map(note =>
               <li key={note.note_id}>
