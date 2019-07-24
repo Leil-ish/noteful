@@ -22,9 +22,9 @@ export default class NoteListMain extends React.Component {
         ? notes
         : notes.filter(note => note.folder_id === folder_id)
     )
-    const { folder_id } = this.props.match.params
+    const { id } = this.props.match.params
     const { notes=[] } = this.context
-    const notesForFolder = getNotesForFolder(notes, folder_id)
+    const notesForFolder = getNotesForFolder(notes, id)
     return (
       <NotefulError>
         <section className='NoteListMain'>
