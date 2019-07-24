@@ -43,7 +43,7 @@ export default class Note extends React.Component {
       <NotefulError>
         <div className='Note'>
           <h2 className='Note__title'>
-            <Link to={`/note/${note_id}`}>
+            <Link to={`/notes/${note_id}`}>
               {note_name}
             </Link>
           </h2>
