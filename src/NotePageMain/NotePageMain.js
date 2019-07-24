@@ -3,7 +3,7 @@ import Note from '../Note/Note'
 import Context from '../Context'
 import NotefulError from '../NotefulError/NotefulError'
 import PropTypes from 'prop-types'
-import { findNote } from '../notes-helpers'
+//import { findNote } from '../notes-helpers'
 import './NotePageMain.css'
 
 export default class NotePageMain extends React.Component {
@@ -14,11 +14,12 @@ export default class NotePageMain extends React.Component {
   }
   static contextType = Context
 
-  handleDeleteNote = noteId => {
+  handleDeleteNote = note_id => {
     this.props.history.push(`/`)
   }
 
   render() {
+    const findNote = (notes=[], note_id) => notes.find(note => note.note_id === note_id)
     const { notes=[] } = this.context
     const { note_id } = this.props.match.params
     const note = findNote(notes, note_id) || { content: '' }

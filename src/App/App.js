@@ -60,9 +60,9 @@ class App extends Component {
     })
   }
 
-  handleDeleteNote = noteId => {
+  handleDeleteNote = note_id => {
     this.setState({
-      notes: this.state.notes.filter(note => note.note_id !== noteId)
+      notes: this.state.notes.filter(note => note.note_id !== note_id)
     })
   }
 
@@ -78,7 +78,7 @@ class App extends Component {
           />
         )}
         <Route
-          path='/note/:noteId'
+          path='/note/:note_id'
           component={NotePageNav}
         />
         <Route
@@ -105,7 +105,7 @@ class App extends Component {
           />
         )}
         <Route
-          path='/note/:noteId'
+          path='/note/:note_id'
           component={NotePageMain}
         />
         <Route

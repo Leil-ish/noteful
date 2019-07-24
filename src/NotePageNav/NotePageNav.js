@@ -4,7 +4,7 @@ import CircleButton from '../CircleButton/CircleButton'
 import NotefulError from '../NotefulError/NotefulError'
 import Context from '../Context'
 import PropTypes from 'prop-types'
-import { findNote, findFolder } from '../notes-helpers'
+//import { findNote, findFolder } from '../notes-helpers'
 import './NotePageNav.css'
 
 export default class NotePageNav extends React.Component {
@@ -19,6 +19,8 @@ export default class NotePageNav extends React.Component {
   static contextType = Context;
 
   render() {
+    const findFolder = (folders=[], folder_id) => folders.find(folder => folder.id === folder_id)
+    const findNote = (notes=[], note_id) => notes.find(note => note.note_id === note_id)
     const { notes, folders, } = this.context
     const { note_id } = this.props.match.params
     const note = findNote(notes, note_id) || {}

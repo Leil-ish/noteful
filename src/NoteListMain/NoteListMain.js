@@ -5,7 +5,7 @@ import Note from '../Note/Note'
 import CircleButton from '../CircleButton/CircleButton'
 import NotefulError from '../NotefulError/NotefulError'
 import Context from '../Context'
-import { getNotesForFolder } from '../notes-helpers'
+//import { getNotesForFolder } from '../notes-helpers'
 import './NoteListMain.css'
 
 export default class NoteListMain extends React.Component {
@@ -17,9 +17,14 @@ export default class NoteListMain extends React.Component {
   static contextType = Context
 
   render() {
-    const { id } = this.props.match.params
+    const getNotesForFolder = (notes=[], folder_id) => (
+      (!folder_id)
+        ? notes
+        : notes.filter(note => note.folder_id === folder_id)
+    )
+    const { folder_id } = this.props.match.params
     const { notes=[] } = this.context
-    const notesForFolder = getNotesForFolder(notes, id)
+    const notesForFolder = getNotesForFolder(notes, folder_id)
     return (
       <NotefulError>
         <section className='NoteListMain'>
